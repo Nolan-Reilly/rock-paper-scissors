@@ -10,21 +10,6 @@
 //   }
 // }
 
-// function getComputerChoice() {
-//   let num = Math.floor(Math.random() * 3);
-//   let computerSelection = "";
-
-//   if (num == 0) {
-//     computerSelection = "Rock";
-//   } else if (num == 1) {
-//     computerSelection = "Paper";
-//   } else {
-//     computerSelection = "Scissors";
-//   }
-
-//   return computerSelection;
-// }
-
 // function playRound(playerSelection, computerSelection) {
 //   let wonRound = false;
 
@@ -75,23 +60,55 @@
 let playerSelection;
 let computerChoice;
 
+// Get all the buttons on the page
 const buttons = document.querySelectorAll("button");
 
 // loop through each button and add a click event listener
 buttons.forEach(function(button) {
   button.addEventListener("click", function(event) {
     if (event.target.id == "rock") {
-      playerSelection = "rock";
+      playerSelection = "Rock";
     }
 
     if (event.target.id == "paper") {
-      playerSelection = "paper";
+      playerSelection = "Paper";
     }
 
     if (event.target.id == "scissors") {
-      playerSelection = "scissors";
+      playerSelection = "Scissors";
     }
-
-    console.log(playerSelection);
   });
 });
+
+// Gets the computers choice for each round that is played
+function getComputerChoice() {
+  let num = Math.floor(Math.random() * 3);
+  let computerSelection = "";
+
+  if (num == 0) {
+    computerSelection = "Rock";
+  } else if (num == 1) {
+    computerSelection = "Paper";
+  } else {
+    computerSelection = "Scissors";
+  }
+
+  return computerSelection;
+}
+
+// Play a round to determine if the player won or the computer won
+function playRound(playerSelection, computerSelection) {
+  let wonRound = false;
+
+  if (playerSelection == "Rock" && computerSelection == "Scissors") {
+    wonRound = true;
+  } else if (playerSelection == "Paper" && computerSelection == "Rock") {
+    wonRound = true;
+  } else if (playerSelection == "Scissors" && computerSelection == "Paper") {
+    wonRound = true;
+  } else {
+    wonRound = false;
+  }
+
+  return wonRound;
+}
